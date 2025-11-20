@@ -1,0 +1,232 @@
+* {
+box-sizing: border-box;
+font-family: Arial, sans-serif;
+}
+
+body {
+font-family: Arial, sans-serif;
+background: #0b1b2b;
+color: white;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+min-height: 100vh;
+margin: 0;
+padding: 20px 10px;
+}
+
+h1 {
+margin-top: 10px;
+text-align: center;
+}
+
+/* ======== Menú de Registro y Nivel (Comparten estilo) ======== */
+#menu, #menuNiveles {
+text-align: center;
+background: #1e293b;
+padding: 25px;
+border-radius: 15px;
+box-shadow: 0 0 20px rgba(0,0,0,0.5);
+width: 90%;
+max-width: 400px;
+margin-bottom: 20px;
+flex-direction: column;
+gap: 10px;
+}
+
+#menuNiveles button {
+width: 80%;
+margin: 5px auto;
+}
+
+input {
+padding: 10px;
+margin: 8px;
+border-radius: 5px;
+border: none;
+width: 80%;
+font-size: 16px;
+}
+
+button {
+margin-top: 15px;
+padding: 10px 20px;
+background: #f59e0b;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+color: black;
+font-weight: bold;
+font-size: 16px;
+transition: background 0.2s;
+}
+
+button:hover {
+background: #fbbf24;
+}
+
+/* ======== Juego ======== */
+#juego {
+display: none;
+flex-direction: column;
+align-items: center;
+width: 100%;
+}
+
+#saludo {
+font-size: 18px;
+margin-top: 10px;
+text-align: center;
+}
+
+#info {
+margin-top: 10px;
+display: flex;
+gap: 20px;
+font-size: 18px;
+flex-wrap: wrap;
+justify-content: center;
+margin-bottom: 20px;
+}
+
+#nivel-actual {
+color: #f59e0b;
+font-weight: bold;
+}
+
+#tablero {
+display: grid;
+grid-gap: 10px;
+width: 100%;
+}
+
+/* Estilo para Nivel 1 (4x4) */
+.nivel-1 {
+max-width: 420px;
+grid-template-columns: repeat(4, 1fr);
+}
+/* Estilo para Nivel 2 (6x4) */
+.nivel-2 {
+max-width: 630px;
+grid-template-columns: repeat(6, 1fr);
+}
+
+/* NUEVO: Estilo para Nivel 3 (8x4) */
+.nivel-3 {
+max-width: 840px;
+grid-template-columns: repeat(8, 1fr);
+}
+
+/* NUEVO: Estilo para Nivel 4 (8x5) */
+.nivel-4 {
+max-width: 840px;
+grid-template-columns: repeat(8, 1fr);
+}
+
+
+.carta {
+width: 100%;
+aspect-ratio: 1/1;
+background: #0ea5a0;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 2rem;
+border-radius: 10px;
+cursor: pointer;
+transition: transform 0.3s;
+user-select: none;
+}
+
+.carta:hover {
+transform: scale(1.05);
+}
+
+.oculta {
+background: #1e293b;
+font-size: 0;
+}
+/* Estilo para cuando se muestra el emoji (al voltear) */
+.carta:not(.oculta) {
+font-size: 2rem;
+}
+
+/* Estilo para el mensaje de recompensa */
+.recompensa {
+background: #0d9488;
+padding: 15px;
+border-radius: 10px;
+margin-top: 20px;
+animation: fadein 1s;
+text-align: center;
+color: #fff;
+width: 100%;
+max-width: 400px;
+}
+@keyframes fadein {
+from { opacity: 0; transform: translateY(-10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======== Tabla de récords ======== */
+#records {
+margin-top: 25px;
+width: 100%;
+max-width: 450px;
+background: #1e293b;
+border-radius: 10px;
+padding: 10px;
+text-align: center;
+}
+
+#records h2 {
+font-size: 20px;
+margin-bottom: 8px;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+font-size: 14px;
+color: white;
+}
+
+th, td {
+border-bottom: 1px solid #334155;
+padding: 5px;
+text-align: center;
+}
+
+th {
+background: #0ea5a0;
+}
+
+@media (max-width: 850px) {
+  /* En pantallas medianas (tabletas), limitamos los niveles grandes a 6 columnas */
+  .nivel-3, .nivel-4 {
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 630px;
+  }
+}
+
+@media (max-width: 650px) {
+/* En pantallas pequeñas, limitamos todos los tableros grandes a 4 columnas */
+.nivel-2, .nivel-3, .nivel-4 {
+grid-template-columns: repeat(4, 1fr);
+max-width: 420px;
+}
+
+.carta {
+font-size: 1.6rem !important;
+}
+.carta:not(.oculta) {
+font-size: 1.6rem !important;
+}
+#records {
+max-width: 100%;
+}
+#menuNiveles button {
+width: 95%;
+}
+}
