@@ -130,7 +130,7 @@
     RECOMPENSA_MSG.innerHTML = '';
     
     // Configuración Inicial
-    bloqueo = true; 
+    bloqueo = true; // Bloquea clics al inicio
     if (timer) clearInterval(timer);
     intentos = 0;
     tiempo = 0;
@@ -142,19 +142,19 @@
     limiteTiempoGlobal = 0; 
 
     if (nivel === 1) {
-      emojisNivel = todosEmojis.slice(0, 8); 
+      emojisNivel = todosEmojis.slice(0, 8); // 16 cartas
       clasesTablero = 'nivel-1'; 
     } else if (nivel === 2) {
-      emojisNivel = todosEmojis.slice(0, 12); 
+      emojisNivel = todosEmojis.slice(0, 12); // 24 cartas
       clasesTablero = 'nivel-2'; 
     } else if (nivel === 3) {
-      emojisNivel = todosEmojis.slice(0, 16); 
+      emojisNivel = todosEmojis.slice(0, 16); // 32 cartas
       clasesTablero = 'nivel-3'; 
-        limiteTiempoGlobal = 90; 
+        limiteTiempoGlobal = 90; // Nivel con límite
     } else if (nivel === 4) {
-      emojisNivel = todosEmojis.slice(0, 20); 
+      emojisNivel = todosEmojis.slice(0, 20); // 40 cartas
       clasesTablero = 'nivel-4'; 
-        limiteTiempoGlobal = 120; 
+        limiteTiempoGlobal = 120; // Nivel con límite
     } else {
       alert(`¡Has completado el juego, ${jugador}! ¡Elige un nuevo desafío!`);
       document.getElementById('juego').style.display = 'none';
@@ -184,12 +184,15 @@
       TABLERO.appendChild(carta);
     });
     
-    // Muestra el botón para iniciar el juego en TODOS los niveles
-    RECOMPENSA_MSG.innerHTML = `
-        <div class="recompensa" style="background: #34d399;">
-            👀 ¡MEMORIZA LOS PARES!
-            <button onclick="iniciarJuegoActivo()" style="margin-top: 10px;">INICIAR JUEGO</button>
-        </div>`;
+    // SOLUCIÓN: Usar un setTimeout para asegurar que el DOM se renderice antes de mostrar el botón
+    setTimeout(() => {
+        // Muestra el botón para iniciar el juego en TODOS los niveles
+        RECOMPENSA_MSG.innerHTML = `
+            <div class="recompensa" style="background: #34d399;">
+                👀 ¡MEMORIZA LOS PARES!
+                <button onclick="iniciarJuegoActivo()" style="margin-top: 10px;">INICIAR JUEGO</button>
+            </div>`;
+    }, 50); // Pequeño retraso de 50ms
   }
 
 
@@ -380,4 +383,5 @@
   }
 </script>
 </body>
+
 </html>
